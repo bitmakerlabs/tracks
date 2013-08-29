@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "tracks"
   spec.version       = Tracks::VERSION
   spec.authors       = ["Michael Fagan"]
-  spec.email         = ["mfagan@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.email         = ["michaelfagan@bitmakerlabs.com"]
+  spec.description   = %q{Web framework}
+  spec.summary       = %q{Micro web framework for Ruby, built on Rack}
   spec.homepage      = ""
   spec.license       = "MIT"
 
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
+
+  spec.add_runtime_dependency "rack"
 end
