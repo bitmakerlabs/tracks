@@ -1,8 +1,6 @@
-$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "app", "controllers")
-
 require "tracks"
-require "phoney_controller"
-require "home_controller"
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "app", "controllers")
 
 module Phoney
 

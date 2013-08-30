@@ -1,2 +1,2 @@
 source 'https://rubygems.org'
-gem 'tracks' # our web framework
+gem 'tracks', :path => "../tracks" # our web framework

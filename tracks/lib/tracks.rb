@@ -1,5 +1,7 @@
 require "tracks/version"
 require "tracks/routing"
+require "tracks/util"
+require "tracks/dependencies"
 require "tracks/string"
 
 module Tracks
