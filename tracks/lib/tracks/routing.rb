@@ -4,7 +4,11 @@ module Tracks
 
     def get_controller_and_action(env)
       _before, controller, action, _after = env["PATH_INFO"].split('/', 4)
-      controller = Object.const_get(controller.capitalize + "Controller")
+      begin
+        controller = Object.const_get("#{controller.capitalize}Controller")
+      rescue
+        controller = false
+      end
       [controller, action]
     end
 
