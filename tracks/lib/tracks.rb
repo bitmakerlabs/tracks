@@ -1,4 +1,5 @@
 require "tracks/version"
+require "tracks/string"
 
 module Tracks
 
