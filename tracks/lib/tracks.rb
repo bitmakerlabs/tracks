@@ -18,7 +18,9 @@ module Tracks
         end
       else
         klass, @action = get_controller_and_action(env)
-        @controller = klass.new(env) if klass
+        if klass
+          @controller = klass.new(env)
+        end
       end
 
       if defined?(@controller) && @controller && defined?(@action)
