@@ -5,7 +5,7 @@ class PhoneyController < Tracks::Controller
   end
 
   def phone_1
-    phone_1 = Tracks::Model::FileModel.find(1)
+    phone_1 = FileModel.find(1)
     render :phone, :obj => phone_1
   end
 

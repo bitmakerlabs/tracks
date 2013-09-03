@@ -1,8 +1,11 @@
 require "erubis"
+require "tracks/file_model"
 
 module Tracks
 
   class Controller
+
+    include Tracks::Model
 
     def initialize(env)
       @env = env
