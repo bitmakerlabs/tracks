@@ -1,2 +1,7 @@
 source 'https://rubygems.org'
+
 gem 'tracks', :path => "../tracks" # our web framework
+
+group :development do
+  gem 'rerun'
+end
