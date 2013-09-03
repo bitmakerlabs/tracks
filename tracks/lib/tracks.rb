@@ -2,6 +2,7 @@ require "tracks/version"
 require "tracks/routing"
 require "tracks/util"
 require "tracks/dependencies"
+require "tracks/controller"
 require "tracks/string"
 
 module Tracks
@@ -34,15 +35,6 @@ module Tracks
       resp ||= [404, {'Content-Type' => 'text/html'}, ["Sorry, page not found."]]
     end
 
-  end
-
-  class Controller
-    def initialize(env)
-      @env = env
-    end
-    def env
-      @env
-    end
   end
 
 end

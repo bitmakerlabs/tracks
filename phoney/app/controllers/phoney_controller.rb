@@ -1,7 +1,7 @@
 class PhoneyController < Tracks::Controller
 
   def a_phone
-    "raw environment info:\n<pre>\n#{env}\n</pre>"
+    render :a_phone, :noun => :battery
   end
 
   def bad_method
