@@ -3,6 +3,7 @@ require "tracks/routing"
 require "tracks/util"
 require "tracks/dependencies"
 require "tracks/controller"
+require "tracks/file_model"
 require "tracks/string"
 
 module Tracks
