@@ -1,5 +1,9 @@
 class PhoneyController < Tracks::Controller
 
+  def index
+    render :index, :phones => FileModel.all
+  end
+
   def a_phone
     render :a_phone, :noun => 'battery'
   end
@@ -7,14 +11,6 @@ class PhoneyController < Tracks::Controller
   def phone_1
     phone_1 = FileModel.find(1)
     render :phone, :obj => phone_1
-  end
-
-  def bad_method
-    begin
-      raise "oh noes!"
-    rescue
-      "An error has occured.<br />Sorry!"
-    end
   end
 
 end

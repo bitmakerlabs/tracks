@@ -29,6 +29,11 @@ module Tracks
         end
       end
 
+      def self.all
+        files = Dir["db/phones/*.json"]
+        files.map { |f| FileModel.new f }
+      end
+
     end
 
   end
