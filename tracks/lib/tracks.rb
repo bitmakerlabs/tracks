@@ -1,9 +1,9 @@
-require_relative "tracks/version"
-require_relative "tracks/routing"
-require_relative "tracks/util"
-require_relative "tracks/dependencies"
-require_relative "tracks/controller"
-require_relative "tracks/string"
+require "tracks/version"
+require "tracks/routing"
+require "tracks/util"
+require "tracks/dependencies"
+require "tracks/controller"
+require "tracks/string"
 
 module Tracks
 
