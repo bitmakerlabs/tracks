@@ -1,6 +1,15 @@
 require_relative "test_helper"
 
+class TestController < Tracks::Controller
+  def index
+    "Hello!" # just returning a string, new using the view renderer
+  end
+end
+
 class TestApp < Tracks::Application
+  def get_controller_and_action(env)
+    [TestController, "index"]
+  end
 end
 
 class TracksAppTest < Test::Unit::TestCase
@@ -12,15 +21,9 @@ class TracksAppTest < Test::Unit::TestCase
   end
 
   def test_request
-    get "/"
+    get "/example/route"
     assert last_response.ok?
-    assert last_response.body["You"]
-  end
-
-  def test_another_request
-    post "/foo"
-    assert last_response.ok?
-    assert last_response.body["You"]
+    assert last_response.body["Hello"]
   end
 
 end
