@@ -1,6 +1,7 @@
 require "erubis"
 require "rack/request"
 require "tracks/file_model"
+require "tracks/sqlite_model"
 
 module Tracks
 
