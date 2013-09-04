@@ -21,6 +21,16 @@ module Tracks
         @hash[name.to_s] = value
       end
 
+      def update(attrs)
+        @hash['phone'] = attrs['phone'] if attrs.has_key?('phone')
+        @hash['inventor'] = attrs['inventor'] if attrs.has_key?('inventor')
+        self.class.save(@filename, @hash)
+      end
+
+      def self.save(filename, hash)
+        File.open(filename, 'w') {|f| f.write MultiJson.dump(hash) }
+      end
+
       def self.find(id)
         begin
           FileModel.new("db/phones/#{id}.json")
@@ -42,11 +52,7 @@ module Tracks
         existing_file_names = Dir['db/phones/*.json'].map { |f| f.split('/')[-1] }
         id = existing_file_names.map { |n| n[0..-5].to_i }.max + 1
         new_filepath = "db/phones/#{id}.json"
-        File.open(new_filepath, "w") do |f|
-          f.write <<TEMPLATE
-            { "phone": "#{hash['phone']}", "inventor": "#{hash['inventor']}"}
-TEMPLATE
-        end
+        save(new_filepath, hash)
         FileModel.new new_filepath
       end
 
