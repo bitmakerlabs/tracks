@@ -28,6 +28,10 @@ module Tracks
       if defined?(@controller) && @controller && defined?(@action)
         if @controller.respond_to? @action
           text = @controller.send(@action)
+          unless text
+            # no string was returned, let's guess/hope there's a view file and try that
+            text = @controller.render_response(@action)
+          end
           if @controller.get_response
             status, headers, rs = @controller.get_response.to_a
             resp = [status, headers, [rs.body].flatten]

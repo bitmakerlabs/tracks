@@ -24,6 +24,9 @@ class PhoneyController < Tracks::Controller
 
   # actions used when developing, but won't be kept
 
+  def whatever
+  end
+
   def by_bell
     render :index, :phones => FileModel.find_all_by_inventor('Bell')
   end
