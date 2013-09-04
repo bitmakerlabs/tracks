@@ -6,11 +6,14 @@ module Tracks
 
     class FileModel
 
+      @@all = {} # cache
+
       def initialize(filename)
         @filename = filename
         basename = File.split(filename)[-1]
         @id = File.basename(basename, ".json").to_i
         @hash = MultiJson.load( File.read(filename) )
+        @@all[@id.to_s] = self
       end
 
       def [](name)
@@ -32,6 +35,9 @@ module Tracks
       end
 
       def self.find(id)
+        if @@all[id.to_s]
+          return @@all[id.to_s]
+        end
         begin
           FileModel.new("db/phones/#{id}.json")
         rescue
@@ -40,8 +46,10 @@ module Tracks
       end
 
       def self.all
-        files = Dir["db/phones/*.json"]
-        files.map { |f| FileModel.new f }
+        existing_file_names = Dir['db/phones/*.json'].map { |f| f.split('/')[-1] }
+        ids = existing_file_names.map { |n| n[0..-5].to_i }
+        ids.each { |id| find(id) } # load everything into the cache if it's not already there
+        @@all.values
       end
 
       def self.create(attrs)
