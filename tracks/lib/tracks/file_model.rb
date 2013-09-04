@@ -52,6 +52,11 @@ module Tracks
         @@all.values
       end
 
+      def self.find_all_by_inventor(query)
+        query.downcase!
+        all.select {|m| m['inventor'].downcase.include?(query)  }
+      end
+
       def self.create(attrs)
         hash = {
           'phone' => attrs['phone'] || '',

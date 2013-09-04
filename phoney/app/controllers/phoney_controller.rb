@@ -20,6 +20,10 @@ class PhoneyController < Tracks::Controller
 
   # actions used when developing, but won't be kept
 
+  def by_bell
+    render :index, :phones => FileModel.find_all_by_inventor('Bell')
+  end
+
   def a_phone
     render :a_phone, :noun => 'battery'
   end
