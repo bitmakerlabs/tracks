@@ -27,7 +27,13 @@ module Tracks
 
       if defined?(@controller) && @controller && defined?(@action)
         if @controller.respond_to? @action
-          resp = [200, {'Content-Type' => 'text/html'}, [@controller.send(@action)]]
+          text = @controller.send(@action)
+          if @controller.get_response
+            status, headers, rs = @controller.get_response.to_a
+            resp = [status, headers, [rs.body].flatten]
+          else
+            resp = [200, {'Content-Type' => 'text/html'}, [text]]
+          end
         elsif is_root
           resp = [200, {'Content-Type' => 'text/html'}, ["Welcome to a new website built on Tracks."]]          
         end
