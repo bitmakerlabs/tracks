@@ -13,6 +13,22 @@ module Tracks
         @hash = data
       end
 
+      def [](name)
+        @hash[name.to_s]
+      end
+
+      def []=(name, value)
+        @hash[name.to_s] = value
+      end
+
+      def self.find(id)
+        row = DB.execute <<SQL
+          SELECT #{schema.keys.join(',')} FROM #{table} WHERE id = #{id};
+SQL
+        data = Hash[schema.keys.zip row[0]]
+        self.new data
+      end
+
       def self.to_sql(val)
         case val
         when Numeric
@@ -35,6 +51,7 @@ module Tracks
 SQL
        data = Hash[keys.zip vals]
        sql = "SELECT last_insert_rowid();"
+       data['id'] = DB.execute(sql)[0][0]
        self.new data
      end
 
