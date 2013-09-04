@@ -7,7 +7,7 @@ class PhoneyController < Tracks::Controller
   end
 
   def show
-    render :phone, :obj => FileModel.find(params['id'])
+    render :phone, :obj => FileModel.find(params['id']), :ua => request.user_agent
   end
 
   def new_phone
