@@ -6,6 +6,10 @@ class PhoneyController < Tracks::Controller
     render :index, :phones => FileModel.all
   end
 
+  def show
+    render :phone, :obj => FileModel.find(params['id'])
+  end
+
   def new_phone
     phone = FileModel.create( {'phone' => 'cellular', 'inventor' => 'motorola'} )
     render :phone, :obj => phone
@@ -22,15 +26,6 @@ class PhoneyController < Tracks::Controller
 
   def by_bell
     render :index, :phones => FileModel.find_all_by_inventor('Bell')
-  end
-
-  def a_phone
-    render :a_phone, :noun => 'battery'
-  end
-
-  def phone_1
-    phone_1 = FileModel.find(1)
-    render :phone, :obj => phone_1
   end
 
 end

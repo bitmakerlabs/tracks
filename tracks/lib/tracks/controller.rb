@@ -1,4 +1,5 @@
 require "erubis"
+require "rack/request"
 require "tracks/file_model"
 
 module Tracks
@@ -13,6 +14,14 @@ module Tracks
 
     def env
       @env
+    end
+
+    def request
+      @request ||= Rack::Request.new(@env)
+    end
+
+    def params
+      request.params
     end
 
     def controller_name
